@@ -7,6 +7,7 @@ public final class Logging{
     }
 
     private static Logging l;
+    private static String pefix =" : \n - ";
 
     public final static Logging getInstance() {
         if (Logging.l == null) {
@@ -22,11 +23,11 @@ public final class Logging{
 
         switch (status) {
             case Status.LOG:
-                System.out.println(class_name + " : " + message);
+                System.out.println(class_name +pefix+ message);
                 break;
 
             case Status.ERROR:
-                System.err.println(class_name + " : " + message);
+                System.err.println(class_name + pefix+ message);
                 System.exit(-1);
         }
 

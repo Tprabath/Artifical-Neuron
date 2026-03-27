@@ -9,7 +9,7 @@ enum ActivationFunction {
 public final class Neuron {
     private static final String c_name = "Neuron";
 
-    double bias = 0d; // default 0
+    double bias;
     double[] inputs, weights;
     ActivationFunction activationFunction;
 
@@ -18,22 +18,43 @@ public final class Neuron {
             double[] weights,
             ActivationFunction activationFunction) {
 
+        this.init(inputs, weights,
+                0, // default 0
+                activationFunction);
+
+    }
+
+    public Neuron(
+            double[] inputs,
+            double[] weights,
+            double bias,
+            ActivationFunction activationFunction) {
+
+        this.init(inputs, weights, bias, activationFunction);
+    }
+
+    private final void init(double[] inputs,
+            double[] weights,
+            double bias,
+            ActivationFunction activationFunction) {
+
         this.inputs = this.checkpoint(inputs);
         this.weights = this.checkpoint(weights);
+        this.bias = bias;
         this.activationFunction = activationFunction;
     }
 
-    public final double fire() {
+    public final double activate() {
         double final_value = 0d;
         int values_length;
 
         // calculate sigma(wi*xi)
         if (inputs.length != weights.length) {
-             Logging
-                .getInstance()
-                .log(Neuron.c_name,
-                        "inputs length must equal to weights length",
-                        Logging.Status.ERROR);
+            Logging
+                    .getInstance()
+                    .log(Neuron.c_name,
+                            "inputs length must equal to weights length",
+                            Logging.Status.ERROR);
         }
 
         values_length = (inputs.length + weights.length) / 2;
@@ -63,29 +84,29 @@ public final class Neuron {
     }
 
     // check all values lass that 1 and more than 0
-    private double[] checkpoint(double[] d){
-        for(double v: d){
-            if(v < 0 && 1 < v){
+    private final double[] checkpoint(double[] d) {
+        for (double v : d) {
+            if (v < 0 && 1 < v) {
                 Logging
-                .getInstance()
-                .log(Neuron.c_name,
-                        "inputs or weights less than 1 and more than 0",
-                        Logging.Status.ERROR);
+                        .getInstance()
+                        .log(Neuron.c_name,
+                                "inputs or weights less than 1 and more than 0",
+                                Logging.Status.ERROR);
             }
         }
 
         return d;
-    }   
+    }
 
-    public void setBias(double bias) {
+    public final void setBias(double bias) {
         this.bias = bias;
     }
 
-    public double[] getInputs() {
+    public final double[] getInputs() {
         return this.inputs;
     }
 
-    public double[] getweights() {
+    public final double[] getweights() {
         return this.weights;
     }
 

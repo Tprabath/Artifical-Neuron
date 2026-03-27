@@ -21,7 +21,7 @@ public final class Normalization {
         return (input - min_value) / (max_value - min_value);
     }
 
-    private static void log_error(String message) {
+    private static final void log_error(String message) {
         Logging
                 .getInstance()
                 .log(Normalization.c_name,
