@@ -74,7 +74,7 @@ public final class Neuron {
 
         switch (func) {
             case ActivationFunction.Sigmoid:
-                return 1 / (1 + Math.exp(value));
+                return 1 / (1 + Math.exp(-value));
 
             default:
                 System.err.println("Not impliment");

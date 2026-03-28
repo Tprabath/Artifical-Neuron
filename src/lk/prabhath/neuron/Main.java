@@ -7,20 +7,20 @@ public class Main {
             new Neuron(
                     new double[] {
                             Normalization.min_max_normalize(
-                                    29,
+                                    59,
                                     100,
                                     0), // exam
                             Normalization.min_max_normalize(
-                                    4,
+                                    7,
                                     10,
                                     0) // attendence
                     },
                     new double[] {
-                            0.01, // exam weigth
+                            0.6, // exam weigth
                             0.001 // attendence weight
                     },
 
-                    -0.2,
+                    -0.01,
                     ActivationFunction.Sigmoid),
 
     };
