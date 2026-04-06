@@ -23,11 +23,11 @@ public final class Logging{
 
         switch (status) {
             case Status.LOG:
-                System.out.println(class_name +pefix+ message);
+                System.out.println("\n"+ class_name +pefix+ message);
                 break;
 
             case Status.ERROR:
-                System.err.println(class_name + pefix+ message);
+                System.err.println("\n"+ class_name + pefix+ message);
                 System.exit(-1);
         }
 

@@ -30,19 +30,29 @@ public class Main {
 
         for (int i = 0; i < Main.neurons.length; i++) {
             Neuron n = neurons[i];
-            double output = n.activate();
+            // double output = n.activate();
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("\nNeuron [" + i + "] is activating...");
-            sb.append("\n\t - input");
-            sb.append(Main.concat(n.getInputs()));
-            sb.append("\n\t - weights");
-            sb.append(Main.concat(n.getweights()));
-            sb.append("\n\t - bias : " + n.getBias());
-            sb.append("\n\t - output : " + output);
-            sb.append("\n\t - fire : " + (output >= threshold));
+            for(int j = 0; j < 10; j++){
+                TrainNeuron.trainNeuron(
+                    n, 
+                    n.getError(),
+                    0.1,
+                    true);
+                    
+                System.out.println("Neuron ["+i+"] Output : " + n.activate());
+            }
 
-            System.out.println(sb.toString());
+            // StringBuilder sb = new StringBuilder();
+            // sb.append("\nNeuron [" + i + "] is activating...");
+            // sb.append("\n\t - input");
+            // sb.append(Main.concat(n.getInputs()));
+            // sb.append("\n\t - weights");
+            // sb.append(Main.concat(n.getweights()));
+            // sb.append("\n\t - bias : " + n.getBias());
+            // sb.append("\n\t - output : " + output);
+            // sb.append("\n\t - fire : " + (output >= threshold));
+
+            // System.out.println(sb.toString());
         }
 
     }
