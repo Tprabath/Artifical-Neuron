@@ -7,7 +7,7 @@ public class Main {
             new Neuron(
                     new double[] {
                             Normalization.min_max_normalize(
-                                30,
+                                    30,
                                     100,
                                     0), // exam
                             Normalization.min_max_normalize(
@@ -21,8 +21,9 @@ public class Main {
                     },
 
                     -0.7,
-                    0.3,
-                    ActivationFunction.Sigmoid),
+                    0.8,
+                    ActivationFunction.Sigmoid,
+                    true),
 
     };
 
@@ -32,14 +33,19 @@ public class Main {
             Neuron n = neurons[i];
             // double output = n.activate();
 
-            for(int j = 0; j < 10; j++){
+            for (int j = 0; j < 100; j++) {
+
                 TrainNeuron.trainNeuron(
-                    n, 
-                    n.getError(),
-                    0.1,
-                    true);
-                    
-                System.out.println("Neuron ["+i+"] Output : " + n.activate());
+                        n,
+                        n.getError(),
+                        0.01,
+                        true);
+
+                double n_output = n.activate();
+
+                System.out.println("Neuron [" + i + "] Output : " + n_output);
+                System.out.println("\n====================");
+
             }
 
             // StringBuilder sb = new StringBuilder();

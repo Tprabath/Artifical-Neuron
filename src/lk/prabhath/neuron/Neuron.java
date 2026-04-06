@@ -15,6 +15,8 @@ public final class Neuron {
             expectedOutput,
             predict;
 
+    boolean verbose;
+
     ActivationFunction activationFunction;
 
     public Neuron(
@@ -37,7 +39,8 @@ public final class Neuron {
         this(inputs, weights,
                 0, // default 0
                 expectedOutput,
-                activationFunction);
+                activationFunction,
+                false);
 
     }
 
@@ -48,25 +51,45 @@ public final class Neuron {
             double expectedOutput,
             ActivationFunction activationFunction) {
 
+        this(
+                inputs,
+                weights,
+                bias,
+                expectedOutput,
+                activationFunction,
+                false);
+    }
+
+    public Neuron(
+            double[] inputs,
+            double[] weights,
+            double bias,
+            double expectedOutput,
+            ActivationFunction activationFunction,
+            boolean verbose) {
+
         this.init(
                 inputs,
                 weights,
                 bias,
                 expectedOutput,
-                activationFunction);
+                activationFunction,
+                verbose);
     }
 
     private final void init(double[] inputs,
             double[] weights,
             double bias,
             double expectedOutput,
-            ActivationFunction activationFunction) {
+            ActivationFunction activationFunction,
+            boolean verbose) {
 
         this.inputs = Neuron.checkpoint(inputs);
         this.weights = Neuron.checkpoint(weights);
         this.bias = bias;
         this.expectedOutput = expectedOutput;
         this.activationFunction = activationFunction;
+        this.verbose = verbose;
     }
 
     public final double activate() {
@@ -99,6 +122,21 @@ public final class Neuron {
                             "Expected Output : " + this.expectedOutput
                                     + "\nOutput : " + this.predict
                                     + "\nError Calculate : " + getError(),
+                            Logging.Status.LOG);
+        }
+
+        if (verbose) {
+            String wights;
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < this.getweights().length; j++) {
+                sb.append("   - weight [" + j + "] : " + this.getweights()[j] + "\n");
+            }
+
+            Logging
+                    .getInstance()
+                    .log(c_name,
+                            "Neuron Verbos \n" + sb.toString()
+                                    + "\n - bias : " + this.getBias(),
                             Logging.Status.LOG);
         }
 
@@ -150,6 +188,10 @@ public final class Neuron {
 
     public final double getBias() {
         return this.bias;
+    }
+
+    public final double getExpectedOutput() {
+        return this.expectedOutput;
     }
 
     public final void setBias(double bias) {

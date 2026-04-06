@@ -7,7 +7,8 @@ public final class Logging{
     }
 
     private static Logging l;
-    private static String pefix =" : \n - ";
+    private static String prefix =" : \n - ";
+    private static String c_name_prefix = "\n Class - ";
 
     public final static Logging getInstance() {
         if (Logging.l == null) {
@@ -23,11 +24,11 @@ public final class Logging{
 
         switch (status) {
             case Status.LOG:
-                System.out.println("\n"+ class_name +pefix+ message);
+                System.out.println(c_name_prefix + class_name +prefix+ message);
                 break;
 
             case Status.ERROR:
-                System.err.println("\n"+ class_name + pefix+ message);
+                System.err.println(c_name_prefix + class_name + prefix+ message);
                 System.exit(-1);
         }
 
