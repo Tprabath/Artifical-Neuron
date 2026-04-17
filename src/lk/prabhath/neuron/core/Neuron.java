@@ -1,12 +1,6 @@
-package lk.prabhath.neuron;
+package lk.prabhath.neuron.core;
 
 import lk.prabhath.neuron.util.Logging;
-
-enum ActivationFunction {
-    Sigmoid,
-    ReLU,
-    Tanh
-}
 
 public final class Neuron {
     private static final String c_name = "Neuron";

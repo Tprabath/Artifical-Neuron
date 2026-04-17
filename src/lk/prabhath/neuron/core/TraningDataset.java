@@ -1,4 +1,4 @@
-package lk.prabhath.neuron;
+package lk.prabhath.neuron.core;
 public class TraningDataset {
     private double[] 
         inputs,

@@ -1,4 +1,4 @@
-package lk.prabhath.neuron;
+package lk.prabhath.neuron.core;
 
 import lk.prabhath.neuron.util.Logging;
 
